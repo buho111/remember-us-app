@@ -12,14 +12,20 @@ import { createFileRoute } from '@tanstack/react-router'
 
 import { Route as rootRouteImport } from './routes/__root'
 
-const MenuLazyRouteImport = createFileRoute('/menu')()
+const ConfigLazyRouteImport = createFileRoute('/config')()
+const AboutLazyRouteImport = createFileRoute('/about')()
 const IndexLazyRouteImport = createFileRoute('/')()
 
-const MenuLazyRoute = MenuLazyRouteImport.update({
-  id: '/menu',
-  path: '/menu',
+const ConfigLazyRoute = ConfigLazyRouteImport.update({
+  id: '/config',
+  path: '/config',
   getParentRoute: () => rootRouteImport,
-} as any).lazy(() => import('./routes/menu.lazy').then((d) => d.Route))
+} as any).lazy(() => import('./routes/config.lazy').then((d) => d.Route))
+const AboutLazyRoute = AboutLazyRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any).lazy(() => import('./routes/about.lazy').then((d) => d.Route))
 const IndexLazyRoute = IndexLazyRouteImport.update({
   id: '/',
   path: '/',
@@ -28,37 +34,48 @@ const IndexLazyRoute = IndexLazyRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexLazyRoute
-  '/menu': typeof MenuLazyRoute
+  '/about': typeof AboutLazyRoute
+  '/config': typeof ConfigLazyRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexLazyRoute
-  '/menu': typeof MenuLazyRoute
+  '/about': typeof AboutLazyRoute
+  '/config': typeof ConfigLazyRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexLazyRoute
-  '/menu': typeof MenuLazyRoute
+  '/about': typeof AboutLazyRoute
+  '/config': typeof ConfigLazyRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/menu'
+  fullPaths: '/' | '/about' | '/config'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/menu'
-  id: '__root__' | '/' | '/menu'
+  to: '/' | '/about' | '/config'
+  id: '__root__' | '/' | '/about' | '/config'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexLazyRoute: typeof IndexLazyRoute
-  MenuLazyRoute: typeof MenuLazyRoute
+  AboutLazyRoute: typeof AboutLazyRoute
+  ConfigLazyRoute: typeof ConfigLazyRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/menu': {
-      id: '/menu'
-      path: '/menu'
-      fullPath: '/menu'
-      preLoaderRoute: typeof MenuLazyRouteImport
+    '/config': {
+      id: '/config'
+      path: '/config'
+      fullPath: '/config'
+      preLoaderRoute: typeof ConfigLazyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutLazyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -73,7 +90,8 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexLazyRoute: IndexLazyRoute,
-  MenuLazyRoute: MenuLazyRoute,
+  AboutLazyRoute: AboutLazyRoute,
+  ConfigLazyRoute: ConfigLazyRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
