@@ -68,6 +68,14 @@ export function Humberger() {
               CONFIG
             </Link>
           </li>
+          <li className="border-b border-gray-200 pb-2">
+            <Link
+              to="/download"
+              className="py-3 inline-block text-gray-700 hover:text-blue-500 font-medium transition"
+            >
+              DOWNLOAD
+            </Link>
+          </li>
         </ul>
       </nav>
     </>

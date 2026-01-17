@@ -63,12 +63,14 @@ export default function QuestionPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-200 via-blue-200 to-green-200 text-gray-800">
+    <div className="h-screen w-[calc(100vw-32px)] px-4 lg:mx-auto lg:max-w-[1000px] bg-gradient-to-br from-pink-200 via-blue-200 to-green-200 text-gray-800">
       <div className="fixed top-4 right-4 z-10">
         <Humberger />
       </div>
       <div className="px-8 py-4 max-w-4xl mx-auto">
-        <h2 className="text-3xl font-bold mb-6 text-center">だれでしょう</h2>
+        <h2 className="text-2xl font-bold mb-6 text-center text-pink-500 drop-shadow-md">
+          {selectedItem ? "👀 だれでしょう ❓" : "データがありません"}
+        </h2>
         {selectedItem && (
           <div className="flex flex-col items-center">
             <div className="bg-white bg-opacity-70 rounded-lg shadow-lg p-4 mb-6">

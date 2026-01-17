@@ -12,10 +12,16 @@ import { createFileRoute } from '@tanstack/react-router'
 
 import { Route as rootRouteImport } from './routes/__root'
 
+const DownloadLazyRouteImport = createFileRoute('/download')()
 const ConfigLazyRouteImport = createFileRoute('/config')()
 const AboutLazyRouteImport = createFileRoute('/about')()
 const IndexLazyRouteImport = createFileRoute('/')()
 
+const DownloadLazyRoute = DownloadLazyRouteImport.update({
+  id: '/download',
+  path: '/download',
+  getParentRoute: () => rootRouteImport,
+} as any).lazy(() => import('./routes/download.lazy').then((d) => d.Route))
 const ConfigLazyRoute = ConfigLazyRouteImport.update({
   id: '/config',
   path: '/config',
@@ -36,34 +42,45 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexLazyRoute
   '/about': typeof AboutLazyRoute
   '/config': typeof ConfigLazyRoute
+  '/download': typeof DownloadLazyRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexLazyRoute
   '/about': typeof AboutLazyRoute
   '/config': typeof ConfigLazyRoute
+  '/download': typeof DownloadLazyRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexLazyRoute
   '/about': typeof AboutLazyRoute
   '/config': typeof ConfigLazyRoute
+  '/download': typeof DownloadLazyRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/config'
+  fullPaths: '/' | '/about' | '/config' | '/download'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/config'
-  id: '__root__' | '/' | '/about' | '/config'
+  to: '/' | '/about' | '/config' | '/download'
+  id: '__root__' | '/' | '/about' | '/config' | '/download'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexLazyRoute: typeof IndexLazyRoute
   AboutLazyRoute: typeof AboutLazyRoute
   ConfigLazyRoute: typeof ConfigLazyRoute
+  DownloadLazyRoute: typeof DownloadLazyRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/download': {
+      id: '/download'
+      path: '/download'
+      fullPath: '/download'
+      preLoaderRoute: typeof DownloadLazyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/config': {
       id: '/config'
       path: '/config'
@@ -92,6 +109,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexLazyRoute: IndexLazyRoute,
   AboutLazyRoute: AboutLazyRoute,
   ConfigLazyRoute: ConfigLazyRoute,
+  DownloadLazyRoute: DownloadLazyRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

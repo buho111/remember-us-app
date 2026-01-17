@@ -2,7 +2,7 @@ import { Humberger } from "../atoms/Humberger";
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-200 via-blue-200 to-green-200 text-gray-800">
+    <div className="h-screen w-[calc(100vw-32px)] px-4 lg:mx-auto lg:max-w-[1000px] bg-gradient-to-br from-pink-200 via-blue-200 to-green-200 text-gray-800">
       <div className="fixed top-4 right-4 z-10">
         <Humberger />
       </div>
