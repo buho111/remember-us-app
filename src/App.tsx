@@ -1,12 +1,13 @@
 import "./App.css";
-import QuestionPage from "./components/pages/QuestionPage";
+import { Humberger } from "./components/atoms/Humberger";
 
-export function App() {
+export function App({ children }) {
   return (
-    <div className="h-screen w-[calc(100vw-32px)] px-4 lg:mx-auto lg:max-w-[1000px] bg-gradient-to-br from-pink-200 via-blue-200 to-green-200 text-gray-800">
-      <div className="px-4">
-        <QuestionPage />
+    <div className="min-h-screen w-screen h-fit bg-gradient-to-br from-pink-200 via-blue-200 to-green-200 text-gray-800">
+      <div className="fixed top-4 right-4 z-10">
+        <Humberger />
       </div>
+      {children}
     </div>
   );
 }

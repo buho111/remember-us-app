@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "image": "https://hana.b-rave.tokyo/wp/wp-content/uploads/2025/12/chika-1024x1024.jpg",
+    "name": "CHIKA"
+  },
+  {
+    "id": 2,
+    "image": "https://hana.b-rave.tokyo/wp/wp-content/uploads/2025/12/naoko-1024x1024.jpg",
+    "name": "NAOKO"
+  },
+  {
+    "id": 3,
+    "image": "https://hana.b-rave.tokyo/wp/wp-content/uploads/2025/12/jisoo-1024x1024.jpg",
+    "name": "JISOO"
+  },
+  {
+    "id": 4,
+    "image": "https://hana.b-rave.tokyo/wp/wp-content/uploads/2025/12/yuri-1024x1024.jpg",
+    "name": "YURI"
+  },
+  {
+    "id": 5,
+    "image": "https://hana.b-rave.tokyo/wp/wp-content/uploads/2025/12/momoka-1024x1024.jpg",
+    "name": "MOMOKA"
+  },
+  {
+    "id": 6,
+    "image": "https://hana.b-rave.tokyo/wp/wp-content/uploads/2025/12/koharu-1024x1024.jpg",
+    "name": "KOHARU"
+  },
+  {
+    "id": 7,
+    "image": "https://hana.b-rave.tokyo/wp/wp-content/uploads/2025/12/mahina-1024x1024.jpg",
+    "name": "MAHINA"
+  }
+]
