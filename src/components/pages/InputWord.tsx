@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import type { ConfigItem } from "../../types";
 
 type questionData = {
@@ -23,6 +23,7 @@ export function InputWord() {
   // 答え
   const [answer, setAnswer] = useState<string>("");
   const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const nextButtonRef = useRef<HTMLButtonElement>(null);
 
   // ---------------------------
   // randomChar
@@ -256,8 +257,8 @@ export function InputWord() {
     console.log("new questionData:", questionData);
     setQuestionData(questionData);
     setCurrentIndex(0);
-    // フォーカスを外す
-    (document.activeElement as HTMLElement)?.blur();
+    // 次へボタンにフォーカスを当てる
+    setTimeout(() => nextButtonRef.current?.focus(), 0);
   };
 
   const handleShowAnswer = () => {
@@ -320,6 +321,7 @@ export function InputWord() {
           </div>
           <div className="flex gap-4">
             <button
+              ref={nextButtonRef}
               type="button"
               onClick={handleNext}
               onTouchEnd={(e) => (e.currentTarget as HTMLButtonElement).blur()}
