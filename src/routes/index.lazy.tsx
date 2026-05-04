@@ -1,11 +1,11 @@
 import { createLazyFileRoute } from "@tanstack/react-router";
 import { App } from "../App";
-import { QuestionPage } from "../components/pages/QuestionPage";
+import { InputWord } from "../components/pages/InputWord";
 
 export const Route = createLazyFileRoute("/")({
   component: () => (
     <App>
-      <QuestionPage />
+      <InputWord />
     </App>
   ),
 });

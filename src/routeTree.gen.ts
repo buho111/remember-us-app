@@ -12,11 +12,17 @@ import { createFileRoute } from '@tanstack/react-router'
 
 import { Route as rootRouteImport } from './routes/__root'
 
+const FourChoiceLazyRouteImport = createFileRoute('/four-choice')()
 const DownloadLazyRouteImport = createFileRoute('/download')()
 const ConfigLazyRouteImport = createFileRoute('/config')()
 const AboutLazyRouteImport = createFileRoute('/about')()
 const IndexLazyRouteImport = createFileRoute('/')()
 
+const FourChoiceLazyRoute = FourChoiceLazyRouteImport.update({
+  id: '/four-choice',
+  path: '/four-choice',
+  getParentRoute: () => rootRouteImport,
+} as any).lazy(() => import('./routes/four-choice.lazy').then((d) => d.Route))
 const DownloadLazyRoute = DownloadLazyRouteImport.update({
   id: '/download',
   path: '/download',
@@ -43,12 +49,14 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutLazyRoute
   '/config': typeof ConfigLazyRoute
   '/download': typeof DownloadLazyRoute
+  '/four-choice': typeof FourChoiceLazyRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexLazyRoute
   '/about': typeof AboutLazyRoute
   '/config': typeof ConfigLazyRoute
   '/download': typeof DownloadLazyRoute
+  '/four-choice': typeof FourChoiceLazyRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -56,13 +64,14 @@ export interface FileRoutesById {
   '/about': typeof AboutLazyRoute
   '/config': typeof ConfigLazyRoute
   '/download': typeof DownloadLazyRoute
+  '/four-choice': typeof FourChoiceLazyRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/config' | '/download'
+  fullPaths: '/' | '/about' | '/config' | '/download' | '/four-choice'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/config' | '/download'
-  id: '__root__' | '/' | '/about' | '/config' | '/download'
+  to: '/' | '/about' | '/config' | '/download' | '/four-choice'
+  id: '__root__' | '/' | '/about' | '/config' | '/download' | '/four-choice'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -70,10 +79,18 @@ export interface RootRouteChildren {
   AboutLazyRoute: typeof AboutLazyRoute
   ConfigLazyRoute: typeof ConfigLazyRoute
   DownloadLazyRoute: typeof DownloadLazyRoute
+  FourChoiceLazyRoute: typeof FourChoiceLazyRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/four-choice': {
+      id: '/four-choice'
+      path: '/four-choice'
+      fullPath: '/four-choice'
+      preLoaderRoute: typeof FourChoiceLazyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/download': {
       id: '/download'
       path: '/download'
@@ -110,6 +127,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutLazyRoute: AboutLazyRoute,
   ConfigLazyRoute: ConfigLazyRoute,
   DownloadLazyRoute: DownloadLazyRoute,
+  FourChoiceLazyRoute: FourChoiceLazyRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

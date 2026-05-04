@@ -49,7 +49,15 @@ export function Humberger() {
               to="/"
               className="py-3 inline-block text-gray-700 hover:text-blue-500 font-medium transition"
             >
-              MAIN
+              回答形式
+            </Link>
+          </li>
+          <li className="border-b border-gray-200 pb-2">
+            <Link
+              to="/four-choice"
+              className="py-3 inline-block text-gray-700 hover:text-blue-500 font-medium transition"
+            >
+              4択形式
             </Link>
           </li>
           <li className="border-b border-gray-200 pb-2">

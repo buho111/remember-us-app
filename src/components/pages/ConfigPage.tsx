@@ -9,9 +9,9 @@ export function ConfigPage() {
     return saved ? JSON.parse(saved) : defaultData;
   });
 
-  const saveData = () => {
+  const saveData = (data: ConfigItem[]) => {
     localStorage.setItem("configData", JSON.stringify(data));
-    alert("データが保存されました。");
+    setData(data);
   };
 
   const clearData = () => {
@@ -38,10 +38,8 @@ export function ConfigPage() {
                 (typeof item.kana === "string" || item.kana === undefined),
             )
           ) {
-            setData(json);
-            alert(
-              "JSONがロードされました。保存ボタンを押して保存してください。",
-            );
+            saveData(json);
+            alert("データが保存されました。");
           } else {
             alert("無効なJSON形式です。");
           }
@@ -75,12 +73,6 @@ export function ConfigPage() {
           className="bg-white text-gray-800 px-4 py-2 rounded-full shadow-lg hover:shadow-xl transition transform hover:scale-105 font-semibold border-4 border-purple-200"
         >
           JSONアップロード
-        </button>
-        <button
-          onClick={saveData}
-          className="bg-white text-gray-800 px-4 py-2 rounded-full shadow-lg hover:shadow-xl transition transform hover:scale-105 font-semibold border-4 border-green-200"
-        >
-          保存
         </button>
         <button
           onClick={clearData}

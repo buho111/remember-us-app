@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import type { ConfigItem, NameInfo } from "../../types";
 
-export function QuestionPage() {
+export function FourChoice() {
   const [data, setData] = useState<ConfigItem[]>([]);
   const [selectedItem, setSelectedItem] = useState<ConfigItem | null>(null);
   const [options, setOptions] = useState<NameInfo[]>([]);
