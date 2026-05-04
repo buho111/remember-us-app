@@ -301,7 +301,15 @@ export function InputWord() {
                   type="button"
                   key={str}
                   onClick={(e) => handleChoiceClick(str, e)}
-                  className="px-4 py-2 bg-white bg-opacity-70 rounded-lg shadow-lg hover:shadow-xl transition leading-tight border-4 border-blue-200 text-gray-700 focus:outline-none focus-visible:outline-none"
+                  onTouchEnd={(e) =>
+                    (e.currentTarget as HTMLButtonElement).blur()
+                  }
+                  className="px-4 py-2 bg-white bg-opacity-70 rounded-lg shadow-lg hover:shadow-xl transition leading-tight border-4 border-blue-200 text-gray-700 focus:outline-none focus-visible:outline-none active:outline-none"
+                  style={{
+                    WebkitTapHighlightColor: "transparent",
+                    WebkitUserSelect: "none",
+                    userSelect: "none",
+                  }}
                 >
                   {str.charAt(currentIndex)}
                 </button>
@@ -311,14 +319,26 @@ export function InputWord() {
             <button
               type="button"
               onClick={handleNext}
-              className="bg-white text-gray-800 px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition transform hover:scale-105 font-semibold border-4 border-blue-200 focus:outline-none focus-visible:outline-none"
+              onTouchEnd={(e) => (e.currentTarget as HTMLButtonElement).blur()}
+              className="bg-white text-gray-800 px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition transform hover:scale-105 font-semibold border-4 border-blue-200 focus:outline-none focus-visible:outline-none active:outline-none"
+              style={{
+                WebkitTapHighlightColor: "transparent",
+                WebkitUserSelect: "none",
+                userSelect: "none",
+              }}
             >
               次へ
             </button>
             <button
               type="button"
               onClick={handleShowAnswer}
-              className="bg-white text-gray-800 px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition transform hover:scale-105 font-semibold border-4 border-green-200 focus:outline-none focus-visible:outline-none"
+              onTouchEnd={(e) => (e.currentTarget as HTMLButtonElement).blur()}
+              className="bg-white text-gray-800 px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition transform hover:scale-105 font-semibold border-4 border-green-200 focus:outline-none focus-visible:outline-none active:outline-none"
+              style={{
+                WebkitTapHighlightColor: "transparent",
+                WebkitUserSelect: "none",
+                userSelect: "none",
+              }}
             >
               答え
             </button>
