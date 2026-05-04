@@ -227,6 +227,8 @@ export function InputWord() {
 
     // フォーカスを外す
     (event.currentTarget as HTMLButtonElement).blur();
+    // 次へボタンにフォーカスを当てる
+    setTimeout(() => nextButtonRef.current?.focus(), 0);
 
     // 現在のインデックス位置の文字が正解文字列と一致するか判定
     const clickedChar = str.charAt(currentIndex);
@@ -257,8 +259,6 @@ export function InputWord() {
     console.log("new questionData:", questionData);
     setQuestionData(questionData);
     setCurrentIndex(0);
-    // 次へボタンにフォーカスを当てる
-    setTimeout(() => nextButtonRef.current?.focus(), 0);
   };
 
   const handleShowAnswer = () => {
