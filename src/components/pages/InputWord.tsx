@@ -225,14 +225,16 @@ export function InputWord() {
   ) => {
     if (!questionData) return;
 
-    // フォーカスを外す
-    (event.currentTarget as HTMLButtonElement).blur();
-    // 次へボタンにフォーカスを当てる
-    setTimeout(() => nextButtonRef.current?.focus(), 0);
-
     // 現在のインデックス位置の文字が正解文字列と一致するか判定
     const clickedChar = str.charAt(currentIndex);
     const expectedChar = questionData.correctKana.charAt(currentIndex);
+
+    // フォーカスを外して次へボタンにフォーカスを当てる
+    (event.currentTarget as HTMLButtonElement).blur();
+    // より長い遅延を設定
+    setTimeout(() => {
+      nextButtonRef.current?.focus();
+    }, 100);
 
     if (clickedChar === expectedChar) {
       setCurrentIndex((prev) => {
